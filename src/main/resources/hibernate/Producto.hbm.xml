@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field" package="dycs.producto.domain.entity">
+	<class name="BankAccount" table="bank_account">
+        <id name="id" column="bank_account_id">
+            <generator class="native"/>
+        </id>
+        <property name="number" column="number" not-null="true" />
+        <component name="balance" class="dycs.common.domain.valueobject.Money">
+        	<property name="amount" column="balance" not-null="true"/>
+        	<property name="currency" column="currency" not-null="true" />
+        </component>
+        <property name="isLocked" column="locked" />
+        <many-to-one name="customer" class="dycs.customers.domain.entity.Customer" column="customer_id" not-null="true"/>
+    </class> 
+</hibernate-mapping>
